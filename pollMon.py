@@ -1,6 +1,7 @@
 import telnetlib
 import time
 import datetime
+import os
 
 host = "172.23.241.15"
 #host = "localhost"
@@ -38,8 +39,8 @@ with telnetlib.Telnet(host, port, timeout) as session:
         print(fullMessage)
 
         fileSuffix = getLogSuffix()
-        errorFile = f"/home/jjc62351/work/D2AFE/err{fileSuffix}.txt"
-        fullFile = f"/home/jjc62351/work/D2AFE/log{fileSuffix}.txt"
+        errorFile = f"{os.getcwd()}/err{fileSuffix}.txt"
+        fullFile = f"{os.getcwd()}/log{fileSuffix}.txt"
         
         calcLrc = compute_lrc(messageRaw.decode())
         logToFile(fullMessage.decode(),fullFile)
